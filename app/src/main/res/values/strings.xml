@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Personal-Bookshelf</string>
+
+    <string name="btn_setting">Settings</string>
+    <string name="account_title">切换账户</string>
+    <string name="reply_title">新闻门户</string>
+    <string name="default_title">发生错误</string>
+    <string name="attachment_title">夜间阅读</string>
+    <string name="attachment_on">夜间阅读模式已开启</string>
+    <string name="attachment_off">夜间阅读模式已关闭</string>
+
+</resources>

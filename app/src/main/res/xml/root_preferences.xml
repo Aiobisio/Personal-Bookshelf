@@ -1,0 +1,22 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <EditTextPreference
+            app:key="account"
+            app:title="@string/account_title"
+            app:useSimpleSummaryProvider="true" />
+
+        <ListPreference
+            app:defaultValue="@string/default_title"
+            app:entries="@array/reply_entries"
+            app:entryValues="@array/entries_values"
+            app:key="news_channel"
+            app:title="@string/reply_title"
+            app:useSimpleSummaryProvider="true" />
+
+        <SwitchPreferenceCompat
+            app:key="attachment"
+            app:summaryOff="@string/attachment_off"
+            app:summaryOn="@string/attachment_on"
+            app:title="@string/attachment_title" />
+
+</PreferenceScreen>
