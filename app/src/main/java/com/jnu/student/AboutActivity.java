@@ -41,8 +41,8 @@ public class AboutActivity extends AppCompatActivity {
     }
 
     private void initViews(){
-        relativeLayout= (RelativeLayout) findViewById(R.id.relativeLayout);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        relativeLayout= findViewById(R.id.relativeLayout);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar=getSupportActionBar();
         if(actionBar!=null){
