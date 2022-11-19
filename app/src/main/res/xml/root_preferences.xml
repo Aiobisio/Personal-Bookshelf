@@ -3,6 +3,7 @@
         <EditTextPreference
             app:key="account"
             app:title="@string/account_title"
+            app:dialogTitle="Your Name:"
             app:useSimpleSummaryProvider="true" />
 
         <ListPreference
