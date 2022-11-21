@@ -24,10 +24,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        homeLinear= (LinearLayout) findViewById(R.id.home);
-        newsLinear= (LinearLayout) findViewById(R.id.news);
-        settingsLinear= (LinearLayout) findViewById(R.id.settings);
-        aboutLinear= (LinearLayout) findViewById(R.id.about);
+        homeLinear= findViewById(R.id.home);
+        newsLinear= findViewById(R.id.news);
+        settingsLinear= findViewById(R.id.settings);
+        aboutLinear= findViewById(R.id.about);
         homeLinear.setOnClickListener(this);
         newsLinear.setOnClickListener(this);
         settingsLinear.setOnClickListener(this);

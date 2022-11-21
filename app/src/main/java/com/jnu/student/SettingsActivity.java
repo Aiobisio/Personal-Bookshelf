@@ -47,7 +47,11 @@ public class SettingsActivity extends AppCompatActivity {
             if (ChannelList != null) {
                 ChannelList.setOnPreferenceChangeListener(this);
                 if(ChannelList.getEntry()!=null) {
-                    ChannelList.setSummary(ChannelList.getEntry());
+                    try{
+                        ChannelList.setSummary(ChannelList.getEntry());
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
                 }
             }
         }
