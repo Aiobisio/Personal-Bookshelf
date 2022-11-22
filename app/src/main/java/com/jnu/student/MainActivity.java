@@ -4,8 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
@@ -13,7 +16,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     LinearLayout newsLinear;
     LinearLayout settingsLinear;
     LinearLayout aboutLinear;
-
     HomeFragment fragmentHome;
     BrowserFragment fragmentBrowser;
     SettingsActivity.SettingsFragment fragmentSettings;
@@ -34,6 +36,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         aboutLinear.setOnClickListener(this);
         mfManager = getSupportFragmentManager();
         homeLinear.performClick(); //模拟手动点触触发Home页面
+        //关于屏幕休眠管理的Flag设置
+        Context screen_context = this;
+        SharedPreferences prefs = screen_context.getSharedPreferences
+                ("com.jnu.student_preferences", Context.MODE_PRIVATE);
+        Boolean screen = prefs.getBoolean("attachment",false);
+        if(screen==true){
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        } else {getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);}
     }
 
     @Override

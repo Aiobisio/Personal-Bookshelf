@@ -2,6 +2,9 @@ package com.jnu.student;
 
 import static com.jnu.student.R.id.web_context;
 import androidx.fragment.app.Fragment;
+
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,7 +43,11 @@ public class BrowserFragment extends Fragment {
         WebView webView=rootView.findViewById(web_context);
         WebSettings webSettings=webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
-        webView.loadUrl("https://www.thepaper.cn/");
+        Context url_context = getActivity();
+        SharedPreferences prefs = url_context.getSharedPreferences
+                ("com.jnu.student_preferences", Context.MODE_PRIVATE);
+        String url = prefs.getString("news_channel","https://www.qq.com/");
+        webView.loadUrl(url);
         webView.setWebViewClient(new WebViewClient(){
 
             @Override
