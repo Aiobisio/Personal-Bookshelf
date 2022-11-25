@@ -1,10 +1,15 @@
 package com.jnu.student;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -20,13 +25,11 @@ public class HomeFragment extends Fragment {
 
     public HomeFragment() {}
     private View rootView;
-    //private TextView textview;
-    //private Button button;
     private ArrayList<Book> bookArrayList = new ArrayList<>();
     private RecyclerView recyclerview;
     private HomeAdapter homeadapter;
-    public static BrowserFragment newInstance() {
-        BrowserFragment fragment = new BrowserFragment();
+    public static HomeFragment newInstance() {
+        HomeFragment fragment = new HomeFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -46,21 +49,14 @@ public class HomeFragment extends Fragment {
         }
         initRecyclerview();
         initData();
-//        textview = root.findViewById(R.id.tv);
-//        button = root.findViewById(R.id.but);
-//        button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                textview.setText("修改");
-//            }
-//        });
         return  rootView;
     }
     private void initData() {
-        for (int i=0;i<30;i++){
-            Book bean = new Book();
-            bean.setId("ID："+i);
-            bookArrayList.add(bean);
+        for (int i=0;i<20;i++){
+            Book book = new Book("算法导论",R.drawable.book_0);
+            book.setTitle("算法导论");
+            book.setId(R.drawable.book_0);
+            bookArrayList.add(book);
         }
     }
     private void initRecyclerview() {

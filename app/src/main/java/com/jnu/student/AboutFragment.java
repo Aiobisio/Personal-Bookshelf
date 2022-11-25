@@ -16,8 +16,8 @@ import mehdi.sakout.aboutpage.Element;
 public class AboutFragment extends Fragment {
     public AboutFragment() {}
 
-    public static BrowserFragment newInstance() {
-        BrowserFragment fragment = new BrowserFragment();
+    public static AboutFragment newInstance() {
+        AboutFragment fragment = new AboutFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
