@@ -8,9 +8,14 @@ import android.view.ViewGroup;
 
 import mehdi.sakout.aboutpage.AboutPage;
 import mehdi.sakout.aboutpage.Element;
-
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link BrowserFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
 public class AboutFragment extends Fragment {
     public AboutFragment() {}
+
     public static AboutFragment newInstance() {
         AboutFragment fragment = new AboutFragment();
         Bundle args = new Bundle();

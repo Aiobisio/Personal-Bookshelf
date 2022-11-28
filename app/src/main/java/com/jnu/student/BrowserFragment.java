@@ -2,6 +2,7 @@ package com.jnu.student;
 
 import static com.jnu.student.R.id.web_context;
 import androidx.fragment.app.Fragment;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -13,8 +14,15 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link BrowserFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
 public class BrowserFragment extends Fragment {
+
     public BrowserFragment() {}
+
     public static BrowserFragment newInstance() {
         BrowserFragment fragment = new BrowserFragment();
         Bundle args = new Bundle();
