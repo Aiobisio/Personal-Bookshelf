@@ -3,7 +3,6 @@ package com.jnu.student;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -107,7 +106,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(fragmentAbout!=null){
             fragmentTransaction.hide(fragmentAbout);
         }
-
     }
     private void setAllFalse() {
         homeLinear.setSelected(false);

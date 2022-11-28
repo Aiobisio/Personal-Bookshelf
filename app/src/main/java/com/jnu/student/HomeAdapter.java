@@ -1,16 +1,15 @@
 package com.jnu.student;
 
+import static com.jnu.student.HomeFragment.MENU_ID_ADD;
+import static com.jnu.student.HomeFragment.MENU_ID_DELETE;
+import static com.jnu.student.HomeFragment.MENU_ID_UPDATE;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.view.ContextMenu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
@@ -53,9 +52,9 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.myViewHodler> 
 
         @Override
         public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-            menu.add(0, 1, 0, "新增" );
-            menu.add(0, 2, 0, "修改" );
-            menu.add(0, 3, 0, "删除" );
+            menu.add(0, MENU_ID_ADD, 0, "添加" );
+            menu.add(0, MENU_ID_UPDATE, 0, "修改" );
+            menu.add(0, MENU_ID_DELETE, 0, "删除" );
         }
     }
 }
