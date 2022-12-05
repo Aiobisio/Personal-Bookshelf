@@ -14,18 +14,34 @@
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="书籍名称"
+            android:text="图书信息"
             android:textSize="25sp"
             tools:layout_editor_absoluteX="100dp"
             tools:layout_editor_absoluteY="225dp" />
 
         <EditText
-            android:id="@+id/book_edittext"
+            android:id="@+id/edit_book_title"
             android:layout_width="400dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:gravity="center"
-            android:hint="请在此处输入书名" />
+            android:hint="在此处输入书名" />
+
+        <EditText
+            android:id="@+id/edit_book_author"
+            android:layout_width="400dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:hint="在此处输入作者名" />
+
+        <EditText
+            android:id="@+id/edit_book_publisher"
+            android:layout_width="400dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:hint="在此处输入出版社" />
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -12,9 +12,9 @@ import java.util.ArrayList;
 public class DataProcess {
     public void save(Context context, ArrayList<Book> data){
         try{
-            FileOutputStream dataStream=context.openFileOutput("data_log.dat",Context.MODE_PRIVATE);
+            FileOutputStream dataStream=context.openFileOutput("data_log",Context.MODE_PRIVATE);
             ObjectOutputStream out=new ObjectOutputStream(dataStream);
-            out.writeObject(dataStream);
+            out.writeObject(data);
             out.close();
             dataStream.close();
         } catch (Exception e) {
@@ -22,12 +22,12 @@ public class DataProcess {
         }
     }
     @NonNull
-    public ArrayList<Book> Load(Context context){
-        ArrayList<Book>data=null;
+    public ArrayList<Book> load(Context context){
+        ArrayList<Book> data=new ArrayList<>();
         try{
-            FileInputStream file_in=context.openFileInput("datalog.dat");
+            FileInputStream file_in=context.openFileInput("data_log");
             ObjectInput in=new ObjectInputStream(file_in);
-            data=(ArrayList<Book>)in.readObject();
+            data=(ArrayList<Book>) in.readObject();
             in.close();
             file_in.close();
         } catch (Exception e) {

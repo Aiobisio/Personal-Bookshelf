@@ -15,10 +15,21 @@ public class EditActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
-        EditText editTextTitle=findViewById(R.id.book_edittext);
+
+        EditText editTextTitle=findViewById(R.id.edit_book_title);
+        EditText editTextAuthor=findViewById(R.id.edit_book_author);
+        EditText editTextPublisher=findViewById(R.id.edit_book_publisher);
+
         position=this.getIntent().getIntExtra("position",0);
         String title=this.getIntent().getStringExtra("title");
-        if(null!=title) {editTextTitle.setText(title);}
+        String author=this.getIntent().getStringExtra("author");
+        String publisher=this.getIntent().getStringExtra("publisher");
+
+        if(null!=title) {
+            editTextTitle.setText(title);
+            editTextAuthor.setText(author);
+            editTextPublisher.setText(publisher);
+        }
         Button btna=findViewById(R.id.edit_btn_apply);
         Button btnc=findViewById((R.id.edit_btn_cancel));
         btna.setOnClickListener(new View.OnClickListener() {
@@ -27,6 +38,8 @@ public class EditActivity extends AppCompatActivity {
                 Intent intent=new Intent();
                 Bundle bundle=new Bundle();
                 bundle.putString("title",editTextTitle.getText().toString());
+                bundle.putString("author",editTextAuthor.getText().toString());
+                bundle.putString("publisher",editTextPublisher.getText().toString());
                 bundle.putInt("position",position);
                 intent.putExtras(bundle);
                 setResult(RESULT_CODE_SUCCESS,intent);

@@ -32,7 +32,9 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.myViewHodler> 
     @Override
     public void onBindViewHolder(@NonNull myViewHodler holder, int position) {
         Book book = bookArrayList.get(position);
-        holder.text.setText(book.getTitle());
+        holder.title.setText(book.getTitle());
+        holder.author.setText(book.getAuthor());
+        holder.publisher.setText(book.getPublisher());
         holder.image.setImageResource(book.getId());
     }
 
@@ -41,12 +43,16 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.myViewHodler> 
         return bookArrayList.size();
     }
     class myViewHodler extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
-        private TextView text;
+        private TextView title;
+        private TextView author;
+        private TextView publisher;
         private ImageView image;
         public myViewHodler(View itemview) {
             super(itemview);
-            text = (TextView)itemview.findViewById(R.id.item_title);
-            image = (ImageView)itemview.findViewById(R.id.item_cover);
+            title = itemview.findViewById(R.id.item_title);
+            author = itemview.findViewById(R.id.item_author);
+            publisher = itemview.findViewById(R.id.item_publisher);
+            image = itemview.findViewById(R.id.item_cover);
             itemView.setOnCreateContextMenuListener(this);
         }
 

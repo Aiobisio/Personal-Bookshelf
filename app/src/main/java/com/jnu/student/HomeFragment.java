@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -31,10 +32,12 @@ public class HomeFragment extends Fragment {
                     Intent intent=result.getData();
                     Bundle bundle=intent.getExtras();
                     String title=bundle.getString("title");
+                    String author=bundle.getString("author");
+                    String publisher=bundle.getString("publisher");
                     int position=bundle.getInt("position");
-                    bookArrayList.add(position,new Book(title,R.drawable.book_0));
+                    bookArrayList.add(position,new Book(title,author,publisher,R.drawable.book));
                     new DataProcess().save(this.getContext(),bookArrayList);
-                    homeadapter.notifyItemInserted(0);
+                    homeadapter.notifyItemInserted(position);
                 }
             }
     });
@@ -46,8 +49,12 @@ public class HomeFragment extends Fragment {
                     Intent intent=result.getData();
                     Bundle bundle=intent.getExtras();
                     String title=bundle.getString("title");
+                    String author=bundle.getString("author");
+                    String publisher=bundle.getString("publisher");
                     int position=bundle.getInt("position");
                     bookArrayList.get(position).setTitle(title);
+                    bookArrayList.get(position).setAuthor(author);
+                    bookArrayList.get(position).setPublisher(publisher);
                     new DataProcess().save(this.getContext(),bookArrayList);
                     homeadapter.notifyItemChanged(position);
                 }
@@ -74,40 +81,33 @@ public class HomeFragment extends Fragment {
         if (rootView == null){
             rootView = inflater.inflate((R.layout.fragment_home),container, false);
         }
-        initRecyclerview();
+        recyclerview = rootView.findViewById(R.id.recyclerview);
+        recyclerview.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false));
         DataProcess dataprocess=new DataProcess();
-        dataprocess.save(this.getContext(),bookArrayList);
-        initData();
-        return  rootView;
-    }
-    private void initData() {
-        Book book = new Book("算法导论",R.drawable.book_0);
-        book.setTitle("算法导论");
-        book.setId(R.drawable.book_0);
-        if (bookArrayList.size()==0){bookArrayList.add(book);}
-    }
-    private void initRecyclerview() {
-        recyclerview = (RecyclerView)rootView.findViewById(R.id.recyclerview);
+        bookArrayList=dataprocess.load(this.getContext());
+        Book book_0 = new Book("样书","样书作者","样书出版社",R.drawable.book);
+        if (bookArrayList.size()==0){bookArrayList.add(book_0);}
         homeadapter = new HomeAdapter(getActivity(), bookArrayList);
         recyclerview.setAdapter(homeadapter);
-        recyclerview.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false));
+        return  rootView;
     }
-
     @Override
-    public boolean onContextItemSelected(final MenuItem item) {
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()){
-            case 1:
+            case MENU_ID_ADD:
                 Intent intent=new Intent(HomeFragment.this.getContext(), EditActivity.class);
                 intent.putExtra("position",item.getOrder());
                 addLauncher.launch(intent);
                 break;
-            case 2:
+            case MENU_ID_UPDATE:
                 Intent intent_e=new Intent(HomeFragment.this.getContext(), EditActivity.class);
                 intent_e.putExtra("position",item.getOrder());
                 intent_e.putExtra("title",bookArrayList.get(item.getOrder()).getTitle());
+                intent_e.putExtra("author",bookArrayList.get(item.getOrder()).getAuthor());
+                intent_e.putExtra("publisher",bookArrayList.get(item.getOrder()).getPublisher());
                 updateLauncher.launch(intent_e);
                 break;
-            case 3:
+            case MENU_ID_DELETE:
                 AlertDialog alertDialog=new AlertDialog.Builder(this.getContext())
                         .setTitle(R.string.delete_confirm)
                         .setNegativeButton(R.string.yes, new DialogInterface.OnClickListener() {
