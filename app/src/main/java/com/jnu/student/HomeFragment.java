@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
@@ -14,6 +15,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 
 
@@ -25,6 +27,7 @@ public class HomeFragment extends Fragment {
     private ArrayList<Book> bookArrayList = new ArrayList<>();
     private RecyclerView recyclerview;
     private HomeAdapter homeadapter;
+    private FloatingActionButton fab;
     private final ActivityResultLauncher<Intent> addLauncher=registerForActivityResult(new ActivityResultContracts.StartActivityForResult()
             ,result ->{
                 if(null!=result){
@@ -81,11 +84,20 @@ public class HomeFragment extends Fragment {
         if (rootView == null){
             rootView = inflater.inflate((R.layout.fragment_home),container, false);
         }
+        fab = rootView.findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(HomeFragment.this.getContext(), EditActivity.class);
+                intent.putExtra("position",0);
+                addLauncher.launch(intent);
+            }
+        });
         recyclerview = rootView.findViewById(R.id.recyclerview);
         recyclerview.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false));
         DataProcess dataprocess=new DataProcess();
         bookArrayList=dataprocess.load(this.getContext());
-        Book book_0 = new Book("样书","样书作者","样书出版社",R.drawable.book);
+        Book book_0 = new Book("样书","作者","出版社",R.drawable.book);
         if (bookArrayList.size()==0){bookArrayList.add(book_0);}
         homeadapter = new HomeAdapter(getActivity(), bookArrayList);
         recyclerview.setAdapter(homeadapter);
