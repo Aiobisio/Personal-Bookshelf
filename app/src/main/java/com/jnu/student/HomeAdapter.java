@@ -22,20 +22,19 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.myViewHodler> 
         this.bookArrayList = bookArrayList;
     }
 
-    @NonNull
     @Override
-    public myViewHodler onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    @NonNull
+    public myViewHodler onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemview = View.inflate(context,R.layout.adapter_home,null);
         return new myViewHodler(itemview);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull myViewHodler holder, int position) {
-        Book book = bookArrayList.get(position);
-        holder.title.setText(book.getTitle());
-        holder.author.setText(book.getAuthor());
-        holder.publisher.setText(book.getPublisher());
-        holder.image.setImageResource(book.getId());
+    public void onBindViewHolder(myViewHodler holder, int position) {
+        holder.getTitle().setText(bookArrayList.get(position).getTitle());
+        holder.getAuthor().setText(bookArrayList.get(position).getAuthor());
+        holder.getPublisher().setText(bookArrayList.get(position).getPublisher());
+        holder.getImage().setImageResource(bookArrayList.get(position).getId());
     }
 
     @Override
@@ -47,6 +46,10 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.myViewHodler> 
         private TextView author;
         private TextView publisher;
         private ImageView image;
+        public TextView getTitle(){return title;}
+        public TextView getAuthor(){return author;}
+        public TextView getPublisher(){return publisher;}
+        public ImageView getImage(){return image;}
         public myViewHodler(View itemview) {
             super(itemview);
             title = itemview.findViewById(R.id.item_title);
@@ -58,9 +61,9 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.myViewHodler> 
 
         @Override
         public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-            menu.add(0, MENU_ID_ADD, 0, "添加" );
-            menu.add(0, MENU_ID_UPDATE, 0, "修改" );
-            menu.add(0, MENU_ID_DELETE, 0, "删除" );
+            menu.add(0, MENU_ID_ADD, getAdapterPosition(), "添加" );
+            menu.add(0, MENU_ID_UPDATE, getAdapterPosition(), "修改" );
+            menu.add(0, MENU_ID_DELETE, getAdapterPosition(), "删除" );
         }
     }
 }

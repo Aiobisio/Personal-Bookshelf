@@ -28,8 +28,8 @@ public class HomeFragment extends Fragment {
     private final ActivityResultLauncher<Intent> addLauncher=registerForActivityResult(new ActivityResultContracts.StartActivityForResult()
             ,result ->{
                 if(null!=result){
-                    if(result.getResultCode()==EditActivity.RESULT_CODE_SUCCESS){
                     Intent intent=result.getData();
+                    if(result.getResultCode()==EditActivity.RESULT_CODE_SUCCESS){
                     Bundle bundle=intent.getExtras();
                     String title=bundle.getString("title");
                     String author=bundle.getString("author");
@@ -45,8 +45,8 @@ public class HomeFragment extends Fragment {
     private final ActivityResultLauncher<Intent> updateLauncher=registerForActivityResult(new ActivityResultContracts.StartActivityForResult()
             ,result ->{
                 if(null!=result){
-                    if(result.getResultCode()==EditActivity.RESULT_CODE_SUCCESS){
                     Intent intent=result.getData();
+                    if(result.getResultCode()==EditActivity.RESULT_CODE_SUCCESS){
                     Bundle bundle=intent.getExtras();
                     String title=bundle.getString("title");
                     String author=bundle.getString("author");
