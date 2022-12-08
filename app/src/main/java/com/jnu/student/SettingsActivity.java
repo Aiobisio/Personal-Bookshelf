@@ -1,5 +1,6 @@
 package com.jnu.student;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -8,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
+import androidx.preference.PreferenceManager;
 
 public class SettingsActivity extends AppCompatActivity {
     @Override
@@ -42,19 +44,8 @@ public class SettingsActivity extends AppCompatActivity {
             setPreferencesFromResource(R.xml.root_preferences, rootKey);
             Preference EditText = findPreference("account");
             ListPreference ChannelList = findPreference("news_channel");
-            if (EditText != null) {
-                EditText.setOnPreferenceChangeListener(this);
-            }
-            if (ChannelList != null) {
-                ChannelList.setOnPreferenceChangeListener(this);
-                if(ChannelList.getEntry()!=null) {
-                    try{
-                        ChannelList.setSummary(ChannelList.getEntry());
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }
-                }
-            }
+            EditText.setOnPreferenceChangeListener(this);
+            ChannelList.setOnPreferenceChangeListener(this);
         }
 
         @Override
@@ -68,8 +59,7 @@ public class SettingsActivity extends AppCompatActivity {
                 int index = ChannelList.findIndexOfValue((String) newValue);
                 ChannelList.setSummary(entries[index]);
                 Toast.makeText(getActivity(),entries[index].toString(),Toast.LENGTH_LONG).show();
-                return true;
-            }else return false;
+            }return true;
         }
     }
 }

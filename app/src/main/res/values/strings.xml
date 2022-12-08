@@ -3,7 +3,7 @@
 
     <string name="btn_setting">Settings</string>
     <string name="account_title">修改账户名称</string>
-    <string name="reply_title">新闻门户偏好</string>
+    <string name="reply_title">修改门户(重启后生效)</string>
     <string name="default_title">Default</string>
     <string name="attachment_title">屏幕休眠管理</string>
     <string name="attachment_on">应用活动时屏幕常亮</string>
