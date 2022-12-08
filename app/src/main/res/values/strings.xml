@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Personal-Bookshelf</string>
+    <string name="app_name">个人图书馆</string>
 
     <string name="btn_setting">Settings</string>
     <string name="account_title">修改账户名称</string>
